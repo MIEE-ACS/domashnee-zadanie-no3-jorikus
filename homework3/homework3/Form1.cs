@@ -21,6 +21,13 @@ namespace homework3
 			string alp_lower = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 			string alp_upper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 			var list = new List<char>();
+			int st = 0;
+			int end = 32;
+			if (sm < 0)
+			{
+				st = 32;
+				end = 64;
+			}
 			for (int i = 0; i < input_string.Length; i++)
 			{
 				char temp = input_string[i];
@@ -28,7 +35,7 @@ namespace homework3
 				{
 					if (char.IsLower(temp))
 					{
-						for (int j = 0; j < 32; j++)
+						for (int j = st; j < end; j++)
 						{
 							if (alp_lower[j] == temp)
 							{
@@ -40,7 +47,7 @@ namespace homework3
 					}
 					else if (char.IsUpper(temp))
 					{
-						for (int j = 0; j < 32; j++)
+						for (int j = st; j < end; j++)
 						{
 							if (alp_upper[j] == temp)
 							{
@@ -66,5 +73,13 @@ namespace homework3
 			string out_str = Cezar(inp_str, sm);
 			textBox2.Text = out_str;
         }
-    }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+			string inp_str = textBox1.Text;
+			int sm = comboBox1.SelectedIndex + 1;
+			string out_str = Cezar(inp_str, -sm);
+			textBox2.Text = out_str;
+		}
+	}
 }
